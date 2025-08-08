@@ -18,6 +18,9 @@ function useFetch<T>(url: string | null) {
             return
         }
 
+        // Assign url to a constant typed as string here
+        const safeurl: string = url;
+
         // Declare an abort controller to cancel fetch if component unmounts
         const controller = new AbortController()
 
@@ -26,7 +29,7 @@ function useFetch<T>(url: string | null) {
             setError(null)
 
             try {
-                const response = await fetch(url, { signal: controller.signal })
+                const response = await fetch(safeurl, { signal: controller.signal })
                 if (!response.ok) {
                     throw new Error(`Error: ${response.status} ${response.statusText}`)
                 }
