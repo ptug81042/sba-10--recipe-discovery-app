@@ -1,8 +1,8 @@
 // src/contexts/FavoritesProvider.tsx
 import { type ReactNode, useCallback } from 'react'
-import useLocalStorage from '../hooks/useLocalStorage'
+import useLocalStorage from '../../hooks/useLocalStorage'
 import { FavoritesContext } from './FavoritesContextObject'
-import { FAVORITES_STORAGE_KEY, isIdInFavorites } from '../utils/favoritesUtils'
+import { FAVORITES_STORAGE_KEY, isIdInFavorites } from '../../utils/favoritesUtils'
 
 interface FavoritesProviderProps {
   children: ReactNode

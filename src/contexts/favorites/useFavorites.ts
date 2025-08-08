@@ -1,7 +1,7 @@
 // src/contexts/useFavorites.ts
 import { useContext } from 'react'
-import { FavoritesContext } from './FavoritesContextObject'
-import type { FavoritesContextType } from './FavoritesContextTypes'
+import { FavoritesContext } from './favorites/FavoritesContextObject'
+import type { FavoritesContextType } from './favorites/FavoritesContextTypes'
 
 // Custom hook to consume favorites context safely
 export const useFavorites = (): FavoritesContextType => {
