@@ -1,6 +1,5 @@
 import React from "react"
 import { Card, Button } from 'react-bootstrap'
-import { Link } from "react-router-dom"
 import { useFavorites } from "../../contexts/favorites/useFavorites"
 import type { RecipeSummary } from "../../types/recipe"
 import { LinkContainer } from 'react-router-bootstrap'
@@ -35,7 +34,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
             />
             <Card.Body>
                 <Card.Title>{strMeal}</Card.Title>
-                <LinkContainer t0={`/recipe/${idMeal}`}>
+                <LinkContainer to={`/recipe/${idMeal}`}>
                     <Button variant="primary" className="me-2">
                         View Details
                     </Button>
