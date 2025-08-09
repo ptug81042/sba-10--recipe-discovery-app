@@ -1,61 +1,48 @@
 // src/services/recipeService.ts
 
-import type { RecipeSummary, RecipeDetailResponse } from '../types/recipe';
+import type { RecipeSummary, RecipeDetailResponse } from "../types/recipe";
 
-// Base API URL for TheMealDB
-const BASE_URL = 'https://www.themealdb.com/api/json/v1/1';
+const BASE_URL = "https://www.themealdb.com/api/json/v1/1";
+
+async function fetchJSON<T>(url: string): Promise<T> {
+  const res = await fetch(url);
+  if (!res.ok) {
+    throw new Error(`API request failed: ${res.status} ${res.statusText}`);
+  }
+  return res.json();
+}
 
 /**
- * Fetch all recipe categories.
- * Endpoint: /categories.php
- * Returns a Promise resolving to an array of category objects.
+ * Search recipes by name (query)
+ * @param query - search string
+ * @returns array of RecipeSummary or empty array if none found
  */
-export const fetchCategories = async (): Promise<{categories: {idCategory: string, strCategory: string, strCategoryThumb: string, strCategoryDescription: string}[]}> => {
-  const response = await fetch(`${BASE_URL}/categories.php`);
-  if (!response.ok) {
-    throw new Error('Failed to fetch categories');
-  }
-  return response.json();
-};
+export async function searchRecipes(query: string): Promise<RecipeSummary[]> {
+  if (!query) return [];
+  const url = `${BASE_URL}/search.php?s=${encodeURIComponent(query)}`;
+  const data = await fetchJSON<{ meals: RecipeSummary[] | null }>(url);
+  return data.meals ?? [];
+}
 
 /**
- * Fetch recipes by category name.
- * Endpoint: /filter.php?c={categoryName}
- * @param categoryName The category name to filter recipes by.
- * Returns a Promise resolving to an array of RecipeSummary objects.
+ * Get recipes by category filter
+ * @param category - category string
+ * @returns array of RecipeSummary or empty array if none found
  */
-export const fetchRecipesByCategory = async (categoryName: string): Promise<{meals: RecipeSummary[] | null}> => {
-  const response = await fetch(`${BASE_URL}/filter.php?c=${encodeURIComponent(categoryName)}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch recipes for category: ${categoryName}`);
-  }
-  return response.json();
-};
+export async function getRecipesByCategory(category: string): Promise<RecipeSummary[]> {
+  if (!category) return [];
+  const url = `${BASE_URL}/filter.php?c=${encodeURIComponent(category)}`;
+  const data = await fetchJSON<{ meals: RecipeSummary[] | null }>(url);
+  return data.meals ?? [];
+}
 
 /**
- * Fetch detailed recipe info by recipe ID.
- * Endpoint: /lookup.php?i={recipeId}
- * @param recipeId The ID of the recipe to fetch details for.
- * Returns a Promise resolving to RecipeDetailResponse.
+ * Get recipe details by ID
+ * @param id - recipe id string
+ * @returns RecipeDetailResponse object or null if not found
  */
-export const fetchRecipeDetailsById = async (recipeId: string): Promise<RecipeDetailResponse> => {
-  const response = await fetch(`${BASE_URL}/lookup.php?i=${encodeURIComponent(recipeId)}`);
-  if (!response.ok) {
-    throw new Error(`Failed to fetch recipe details for ID: ${recipeId}`);
-  }
-  return response.json();
-};
-
-/**
- * Search recipes by name.
- * Endpoint: /search.php?s={query}
- * @param query The search query string.
- * Returns a Promise resolving to an object with meals array or null.
- */
-export const searchRecipesByName = async (query: string): Promise<{meals: RecipeSummary[] | null}> => {
-  const response = await fetch(`${BASE_URL}/search.php?s=${encodeURIComponent(query)}`);
-  if (!response.ok) {
-    throw new Error(`Failed to search recipes with query: ${query}`);
-  }
-  return response.json();
-};
+export async function getRecipeDetailsById(id: string) {
+  if (!id) return null;
+  const url = `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`;
+  return fetchJSON<RecipeDetailResponse>(url);
+}
