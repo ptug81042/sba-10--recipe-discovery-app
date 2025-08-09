@@ -5,6 +5,8 @@ import { type RecipeSummary } from "../../types/recipe"
 
 interface RecipeListProps {
     recipes: RecipeSummary[]
+    loading?: boolean
+    error?: string | null
 }
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {

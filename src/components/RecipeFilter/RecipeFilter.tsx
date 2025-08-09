@@ -16,6 +16,7 @@ interface RecipeFilterProps {
     onCategoryChange: (category: string) => void // Callback for when category changes
     searchQuery: string // The current search input text
     onSearchChange: (query: string) => void // Callback for when search input changes
+    onSearchSubmit?: () => void
 }
 
 // ---------------------

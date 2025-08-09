@@ -9,6 +9,13 @@ export interface RecipeDetailResponse {
   meals: RecipeDetail[] | null;
 }
 
+export interface Category {
+  idCategory: string;
+  strCategory: string;
+  strCategoryThumb: string;
+  strCategoryDescription: string;
+}
+
 // Type for detailed recipe information as returned by /lookup.php?i=ID
 export interface RecipeDetail {
     isMeal: string
