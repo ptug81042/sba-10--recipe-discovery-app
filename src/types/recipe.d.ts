@@ -6,7 +6,7 @@ export interface RecipeSummary {
 }
 
 export interface RecipeDetailResponse {
-  meals: RecipeDetail[];
+  meals: RecipeDetail[] | null;
 }
 
 // Type for detailed recipe information as returned by /lookup.php?i=ID
