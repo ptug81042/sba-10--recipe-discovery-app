@@ -5,6 +5,10 @@ export interface RecipeSummary {
     strMealThumb: string // URL to the meal thumbnail image
 }
 
+export interface RecipeDetailResponse {
+  meals: RecipeDetail[];
+}
+
 // Type for detailed recipe information as returned by /lookup.php?i=ID
 export interface RecipeDetail {
     isMeal: string
