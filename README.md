@@ -32,19 +32,22 @@ The application fetches data from the free, public [TheMealDB API](https://www.t
 - **Browse Categories:** The home page displays recipe categories. Click any category to see recipes in that category.  
 - **Search Recipes:** Use the search bar in the navbar to find recipes by name. Search results display matching recipes.  
 - **View Recipe Details:** Click a recipe to view its details, including ingredients, instructions, and media links.  
-- **Manage Favorites:** On recipe details, use the "Add to Favorites" or "Remove from Favorites" button to manage your favorite recipes. Favorites persist across sessions.  
-- **Theme Toggle:** Switch between light and dark themes using the toggle button. Your preference is saved for future visits.
+- **Manage Favorites:** On recipe details and home page, use the "Add to Favorites" or "Remove from Favorites" button to manage your favorite recipes. Favorites persist across sessions.  
+- **Theme Toggle:** Switch between light and dark themes using the toggle button with sun/moon icons. Your preference is saved for future visits.
 
 ---
 
 ## Reflection
 
 - **Most challenging part:**  
-  The most challenging aspect of this project was designing and implementing the `FavoritesContext` with persistence in `localStorage`. Ensuring that favorites were reliably saved and synchronized across multiple components while avoiding unnecessary re-renders required careful use of hooks like `useMemo` and `useCallback`.  
-  Additionally, I encountered several issues with fetching and properly using data from the TheMealDB API, particularly handling the API’s nested response structure and inconsistent data formats. Overcoming these required refining TypeScript types and carefully parsing the API responses.
+  The most challenging aspect of this project was designing and implementing the `FavoritesContext` with persistent state using `localStorage`. Ensuring favorites were synchronized across components and persisted properly required careful management with React hooks such as `useMemo` and `useCallback` to optimize rendering.  
+  Handling TheMealDB API’s nested response structures and inconsistent data formats also required refining TypeScript types and parsing logic, especially for recipe details and ingredient extraction.
 
-- **Design decision:**  
-  I chose to create a custom hook `useFetch` for data fetching to centralize and reuse loading, error, and data state management across different API calls. This abstraction simplified components and improved maintainability by keeping fetch logic consistent and isolated.
+- **Design decisions:**  
+  Created a reusable custom hook `useFetch` to centralize fetching logic, error handling, and loading states across components.  
+  Used React Context API combined with hooks for global state management (favorites, theme, search).  
+  Included a `ThemeToggleButton` component using `react-icons` for a polished toggle UI.  
+  Ensured favorite recipes are displayed consistently on both the home and favorites pages by passing full recipe data objects to `RecipeCard` components, avoiding type conflicts.
 
 ---
 
@@ -57,6 +60,17 @@ The application fetches data from the free, public [TheMealDB API](https://www.t
 
 ---
 
+## Live Demo
+
+Check out the live deployed app on Netlify:
+
+[https://parsa-recipe-discovery-app-sba-10.netlify.app/](https://parsa-recipe-discovery-app-sba-10.netlify.app/)
+
+---
+
 ## Notes
 
-- No live demo is currently available due to deployment issues on Netlify.
+- The app includes light/dark theming with persisted preferences and icons using `react-icons`.  
+- Favorites management uses Context API with localStorage sync for persistence.  
+- Recipe details page fetches and parses ingredients dynamically from API response keys.  
+- Search and category filters are implemented with clean routing and state management.
