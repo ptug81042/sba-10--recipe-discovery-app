@@ -1,49 +1,81 @@
-.container {
-    max-width: 800px;
+.recipeDetails {
+    max-width: 900px;
     margin: 2rem auto;
-    padding: 1.5rem;
-    background: var(--color-surface);
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    padding: 1rem 2rem;
+    background-color: var(--background-card, #fff);
+    border-radius: 8px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-primary, #333);
 }
 
 .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
     margin-bottom: 1rem;
+    font-weight: 700;
+    text-align: center;
+    color: var(--color-accent, #2a7ae2);
 }
 
 .image {
-    width: 100%;
+    display: block;
+    max-width: 100%;
+    height: auto;
     border-radius: 8px;
-    margin-bottom: 1rem;
+    margin: 0 auto 1.5rem auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.meta {
-    font-size: 0.9rem;
-    color: var(--color-text-secondary);
-    margin-bottom: 1.5rem;
-}
-
-.ingredients {
-    list-style: none;
-    padding: 0;
-    margin-bottom: 1.5rem;
-}
-
-.ingredients li {
-    padding: 0.25rem 0;
-    border-bottom: 1.5rem;
-}
-
-.instructions {
-    white-space: pre-wrap;
-    line-height: 1.6;
-}
-
-.loading,
-.error,
-.empty {
-    text-align: center;
-    padding: 2rem;
+.info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
     font-size: 1.1rem;
+    margin-bottom: 2rem;
+    color: var(--text-secondary, #555);
+}
+
+.info p {
+    margin: 0;
+    font-weight: 600;
+}
+
+.section {
+    margin-bottom: 2.5rem;
+}
+
+.section h2 {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid var(--color-accent, #2a7ae2);
+    padding-bottom: 0.25rem;
+}
+
+.section p {
+    line-height: 1.6;
+    font-size: 1rem;
+    color: var(--text-primary, #333);
+}
+
+.section ul {
+    list-style: disc inside;
+    padding-left: 1rem;
+    color: var(--text-primary, #333);
+}
+
+.section ul li {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+@media (max-width: 600px) {
+    .recipeDetails {
+        padding: 1rem;
+    }
+
+    .info {
+        flex-direction: column;
+        align-items: center;
+    }
 }
