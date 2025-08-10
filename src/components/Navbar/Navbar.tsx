@@ -24,7 +24,8 @@ const Navbar: React.FC = () => {
             sticky="top"
         >
             <Container>
-                <RBNavbar.Brand href="/">Recipe Discovery</RBNavbar.Brand>
+                <div><RBNavbar.Brand href="/">Recipe Discovery</RBNavbar.Brand></div>
+                <div><RBNavbar.Brand href="/favorites">Favorites</RBNavbar.Brand></div>
                 <RBNavbar.Toggle aria-controls="basic-navbar-nav" />
                 <RBNavbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
