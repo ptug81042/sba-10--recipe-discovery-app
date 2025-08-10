@@ -34,17 +34,26 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
             />
             <Card.Body>
                 <Card.Title>{strMeal}</Card.Title>
-                <LinkContainer to={`/recipe/${idMeal}`}>
+                <div>
+                    <LinkContainer to={`/recipe/${idMeal}`}>
+                        <Button variant="primary" className="me-2">
+                            View Details
+                        </Button>
+                    </LinkContainer>
+                </div>
+                <div>
+                    <Button
+                        variant={favorite ? 'danger' : 'outline-danger'}
+                        onClick={toggleFavorite}
+                    >
+                        {favorite ? 'Remove Favorite' : 'Add Favorite'}
+                    </Button>
+                </div>
+                <LinkContainer to={`/favorites`}>
                     <Button variant="primary" className="me-2">
-                        View Details
+                        { favorite ? 'Go To Favorites' : '' }
                     </Button>
                 </LinkContainer>
-                <Button
-                    variant={favorite ? 'danger' : 'outline-danger'}
-                    onClick={toggleFavorite}
-                >
-                    {favorite ? 'Remove Favorite' : 'Add Favorite'}
-                </Button>
             </Card.Body>
         </Card>
     )

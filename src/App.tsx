@@ -17,15 +17,10 @@ function App() {
       <main style={{ padding: "1rem" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />
-          <Route
-            path="/category/:categoryName"
-            element={<CategoryPage />}
-          />
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/search" element={<SearchResultsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
-          <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
-          <Route path="/" element={<HomePage />} />
+          <Route path="/recipe/:id" element={<RecipeDetailsPage />} />
           <Route path="*" element={<p>Page Not Found</p>} />
         </Routes>
       </main>

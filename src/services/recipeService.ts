@@ -1,6 +1,6 @@
 // src/services/recipeService.ts
 
-import type { RecipeSummary, RecipeDetailResponse } from "../types/recipe";
+import type { RecipeSummary, RecipeDetailResponse, RecipeDetails } from "../types/recipe";
 
 const BASE_URL = "https://www.themealdb.com/api/json/v1/1";
 
@@ -61,9 +61,39 @@ export async function getRecipesByCategory(category: string): Promise<RecipeSumm
  * @param id - recipe id string
  * @returns RecipeDetailResponse object or null if not found
  */
-export async function getRecipeDetailsById(id: string) {
-  if (!id) return null;
-  const url = `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`;
-  const data = await fetchJSON<RecipeDetailResponse>(url);
-  return data.meals ? data.meals[0] : null;
+export async function getRecipeDetailsById(id: string): Promise<RecipeDetails | null> {
+  try {
+    const res = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`);
+    if (!res.ok) throw new Error(`HTTP error! status: ${res.status}`);
+
+    const data: RecipeDetailResponse = await res.json();
+    if (!data.meals || data.meals.length === 0) return null;
+
+    const meal = data.meals[0];
+
+    // Build ingredients array from strIngredientX and strMeasureX
+    const ingredients = [];
+    for (let i = 1; i <= 20; i++) {
+      const ingredientRaw = meal[`strIngredient${i}` as keyof typeof meal];
+      const measureRaw = meal[`strMeasure${i}` as keyof typeof meal];
+
+      // Only proceed if ingredientRaw is a non-empty string
+      if (typeof ingredientRaw === "string" && ingredientRaw.trim() !== "") {
+        const ingredient = ingredientRaw.trim();
+
+        // For measure, if it's a string, trim it; else empty string
+        const measure = typeof measureRaw === "string" ? measureRaw.trim() : "";
+
+        ingredients.push({ ingredient, measure });
+      }
+    }
+
+    return {
+      ...meal,
+      ingredients,
+    };
+  } catch (error) {
+    console.error("Failed to fetch recipe details:", error);
+    return null;
+  }
 }
