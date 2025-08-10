@@ -13,6 +13,26 @@ async function fetchJSON<T>(url: string): Promise<T> {
 }
 
 /**
+ * Fetches all meals from TheMealDB API.
+ * Note: The API doesn't have a true "get all meals" endpoint,
+ * so this uses search.php?s= to get all recipes (empty string returns all).
+ */
+export async function getAllRecipes() {
+  try {
+    const response = await fetch(`${BASE_URL}/search.php?s=`);
+    if (!response.ok) {
+      throw new Error(`Error fetching recipes: ${response.status}`);
+    }
+
+    const data = await response.json();
+    return data.meals || [];
+  } catch (error) {
+    console.error('Error in getAllRecipes:', error);
+    return [];
+  }
+}
+
+/**
  * Search recipes by name (query)
  * @param query - search string
  * @returns array of RecipeSummary or empty array if none found

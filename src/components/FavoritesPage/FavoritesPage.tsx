@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import { useFavorites } from "../../contexts/favorites/useFavorites"
 import RecipeCard from "../../components/RecipeCard/RecipeCard"
-import type { RecipeSummary, RecipeDetail } from "../../types/recipe"
+import type { RecipeSummary, RecipeDetails } from "../../types/recipe"
 
 /**
  * FavoritesPage Component
@@ -16,7 +16,7 @@ const FavoritesPage: React.FC = () => {
     const { favoriteIds } = useFavorites()
 
     // State to hold full recipe details of favorites
-    const [recipes, setRecipes] = useState<RecipeDetail[]>([])
+    const [recipes, setRecipes] = useState<RecipeDetails[]>([])
 
     // Fetch detailed info for each favorite ID sequentially
     useEffect(() => {
@@ -26,12 +26,12 @@ const FavoritesPage: React.FC = () => {
         }
 
         // Helper function to fetch details for one recipe ID
-        const fetchRecipeDetail = async (id: string): Promise<RecipeDetail | null> => {
+        const fetchRecipeDetail = async (id: string): Promise<RecipeDetails | null> => {
             try {
                 const response = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`)
                 const json = await response.json()
                 if (json.meals && json.meals.length > 0) {
-                    return json.meals[0] as RecipeDetail
+                    return json.meals[0] as RecipeDetails
                 }
                 return null
             } catch (error) {
@@ -44,7 +44,7 @@ const FavoritesPage: React.FC = () => {
         Promise.all(favoriteIds.map(id => fetchRecipeDetail(id)))
             .then((results) => {
                 // Filter out any null responses
-                const validRecipes = results.filter((r): r is RecipeDetail => r !== null)
+                const validRecipes = results.filter((r): r is RecipeDetails => r !== null)
                 setRecipes(validRecipes)
             })
     }, [favoriteIds])
@@ -61,7 +61,7 @@ const FavoritesPage: React.FC = () => {
 
     // Map RecipeDetail to RecipeSummary for RecipeCard usage
     const recipeSummaries: RecipeSummary[] = recipes.map(recipe => ({
-        idMeal: recipe.isMeal,
+        idMeal: recipe.idMeal,
         strMeal: recipe.strMeal,
         strMealThumb: recipe.strMealThumb,
     }))

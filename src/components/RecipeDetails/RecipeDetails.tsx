@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { Container, Row, Col, Image, Button, Badge, Spinner } from "react-bootstrap";
 import useFetch from "../../hooks/useFetch";
-import { type RecipeDetailResponse, type RecipeDetail } from "../../types/recipe";
+import { type RecipeDetailResponse, type RecipeDetails } from "../../types/recipe";
 import { useFavorites } from "../../contexts/favorites/useFavorites";
 
 /**
@@ -68,8 +68,8 @@ const RecipeDetails: React.FC = () => {
     const getIngredients = (): string[] => {
         const ingredients: string[] = [];
         for (let i = 1; i <= 20; i++) {
-            const ingredientKey = `strIngredient${i}` as keyof RecipeDetail;
-            const measureKey = `strMeasure${i}` as keyof RecipeDetail;
+            const ingredientKey = `strIngredient${i}` as keyof RecipeDetails;
+            const measureKey = `strMeasure${i}` as keyof RecipeDetails;
 
             const ingredient = recipe[ingredientKey] as string | null | undefined;
             const measure = recipe[measureKey] as string | null | undefined;
