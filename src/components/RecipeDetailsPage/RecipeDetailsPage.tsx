@@ -5,7 +5,7 @@ import { getRecipeDetailsById } from "../../services/recipeService";
 import { type RecipeDetails } from "../../types/recipe";
 import LoadingSpinner from "../../components/Loader/Spinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import styles from "./RecipeDetailsPage.module.css";
+import styles from "./styles.module.css";
 
 const RecipeDetailsPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
