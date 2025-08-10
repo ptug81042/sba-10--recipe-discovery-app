@@ -8,15 +8,11 @@ import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton"
 import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import FavoritesPage from "./components/FavoritesPage/FavoritesPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
+import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
 
 const HomePage: React.FC = () => {
   // For simplicity, redirect home to /search or /category/Beef or custom homepage component later
   return <Navigate to="/search" />;
-};
-
-const SearchResultsPage: React.FC = () => {
-  // Placeholder: will implement search results UI later
-  return <div>Search Results Page</div>;
 };
 
 function App() {
