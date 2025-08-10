@@ -2,7 +2,6 @@
 import { Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar/Navbar";
-import ThemeToggleButton from "./components/ThemeToggleButton/ThemeToggleButton";
 import FavoritesPage from "./components/FavoritesPage/FavoritesPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
@@ -13,7 +12,6 @@ function App() {
   return (
     <>
       <Navbar />
-      <ThemeToggleButton />
       <main style={{ padding: "1rem" }}>
         <Routes>
           <Route path="/" element={<HomePage />} />

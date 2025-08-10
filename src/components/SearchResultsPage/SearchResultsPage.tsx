@@ -12,7 +12,7 @@ import styles from "./styles.module.css";
 
 const SearchResultsPage: React.FC = () => {
     const [searchParams] = useSearchParams();
-    const query = searchParams.get("q") || "";
+    const query = searchParams.get("query") || "";
 
     const [recipes, setRecipes] = useState<RecipeSummary[]>([]);
     const [loading, setLoading] = useState<boolean>(false);

@@ -1,0 +1,27 @@
+/* Container for the whole page */
+.container {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Heading style */
+.heading {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+/* Grid layout for recipe cards */
+.recipeGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Status message (loading/error) styling */
+.statusMessage {
+  text-align: center;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+}

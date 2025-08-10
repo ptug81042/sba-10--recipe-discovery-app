@@ -52,3 +52,41 @@ h1, h2, h3, h4, h5, h6 {
 #root, #__next {
   isolation: isolate;
 }
+
+/* index.css or theme.css */
+
+body.theme-light {
+  --bg-color: #fff;
+  --text-color: #222;
+  --button-bg: #007bff;
+  --button-text: #fff;
+}
+
+body.theme-dark {
+  --bg-color: #121212;
+  --text-color: #eee;
+  --button-bg: #1e90ff;
+  --button-text: #000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Example button style */
+button {
+  background-color: var(--button-bg);
+  color: var(--button-text);
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Optional: Hover effect */
+button:hover {
+  opacity: 0.9;
+}

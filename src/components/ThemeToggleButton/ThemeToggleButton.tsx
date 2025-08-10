@@ -1,5 +1,6 @@
 import { Button } from 'react-bootstrap'
 import { useTheme } from '../../hooks/useTheme'
+import { FaMoon, FaSun } from 'react-icons/fa'
 
 // ThemeToggleButton component toggles between light and dark theme
 const ThemeToggleButton = () => {
@@ -7,12 +8,17 @@ const ThemeToggleButton = () => {
 
     return (
         <Button
-            variant={theme === 'light' ? 'outline-dark' : 'outline-light'}
             onClick={toggleTheme}
-            aria-label='Toggle light/dark theme'
-            className='ms-2'
+            aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+            style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                fontSize: "1.5rem",
+                color: theme === "light" ? "#FFA500" : "#FFF",
+            }}
         >
-            {theme === 'light' ? '🌞 Light Mode' : '🌙 Dark Mode'}
+            {theme === "light" ? <FaMoon /> : <FaSun />}
         </Button>
     )
 }
