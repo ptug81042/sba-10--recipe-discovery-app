@@ -9,6 +9,7 @@ import RecipeDetails from "./components/RecipeDetails/RecipeDetails";
 import FavoritesPage from "./components/FavoritesPage/FavoritesPage";
 import CategoryPage from "./components/CategoryPage/CategoryPage";
 import SearchResultsPage from "./components/SearchResultsPage/SearchResultsPage";
+import RecipeDetailsPage from "./components/RecipeDetailsPage/RecipeDetailsPage";
 
 const HomePage: React.FC = () => {
   // For simplicity, redirect home to /search or /category/Beef or custom homepage component later
@@ -31,6 +32,7 @@ function App() {
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/search" element={<SearchResultsPage />} />
           <Route path="/category/:categoryName" element={<CategoryPage />} />
+          <Route path="/recipes/:id" element={<RecipeDetailsPage />} />
           <Route path="*" element={<p>Page Not Found</p>} />
         </Routes>
       </main>

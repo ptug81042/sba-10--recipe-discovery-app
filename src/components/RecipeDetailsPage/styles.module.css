@@ -1,0 +1,49 @@
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background: var(--color-surface);
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+.meta {
+    font-size: 0.9rem;
+    color: var(--color-text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+.ingredients {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 1.5rem;
+}
+
+.ingredients li {
+    padding: 0.25rem 0;
+    border-bottom: 1.5rem;
+}
+
+.instructions {
+    white-space: pre-wrap;
+    line-height: 1.6;
+}
+
+.loading,
+.error,
+.empty {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.1rem;
+}

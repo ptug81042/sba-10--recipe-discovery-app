@@ -44,5 +44,6 @@ export async function getRecipesByCategory(category: string): Promise<RecipeSumm
 export async function getRecipeDetailsById(id: string) {
   if (!id) return null;
   const url = `${BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`;
-  return fetchJSON<RecipeDetailResponse>(url);
+  const data = await fetchJSON<RecipeDetailResponse>(url);
+  return data.meals ? data.meals[0] : null;
 }
