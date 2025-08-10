@@ -36,8 +36,11 @@ export const FavoritesProvider = ({ children }: FavoritesProviderProps) => {
     [favoriteIds]
   )
 
+  // For now, favoriteRecipes is set to favoriteIds (adjust as needed for your app logic)
+  const favoriteRecipes = favoriteIds;
+
   return (
-    <FavoritesContext.Provider value={{ favoriteIds, addFavorite, removeFavorite, isFavorite }}>
+    <FavoritesContext.Provider value={{ favoriteIds, addFavorite, removeFavorite, isFavorite, favoriteRecipes }}>
       {children}
     </FavoritesContext.Provider>
   )
